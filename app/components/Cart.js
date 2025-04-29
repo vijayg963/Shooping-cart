@@ -2,6 +2,7 @@
 import AppContext from '../AppContext';
 import React, { useContext } from 'react';
 import EmptyCart from './emptyCard';
+import { THRESHOLD } from '../utils/constant';
 
 const Cart = () => {
     const { cart, setCart } = useContext(AppContext);
@@ -35,8 +36,34 @@ const Cart = () => {
 
     }
 
+    const getTotal = () => {
+        if (cart.length === 0) return 0
+        return cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
+      }
 
-    console.log('CARD', cart);
+    const getFreeGift = () => {
+        if (getTotal() >= THRESHOLD) {
+            return (
+                <div
+            
+                className='bg-white flex justify-between items-center gap-4 shadow-md my-4 border border-gray-200 p-4 rounded-md'
+            >
+                <div className='text-gray-700 text-sm'>
+                    <h5 className='font-semibold text-gray-700 text-base'>Wireless mouse</h5>
+                    <span className='text-xs md:text-sm font-medium text-gray-500'>
+                        ₹0 * 1
+                    </span>{' '}
+                    = <span className='text-xs md:text-sm font-medium text-gray-500'>₹{0}</span>
+                </div>
+
+                <div className='flex justify-center items-center gap-1'>
+
+                    <button className=' rounded-md flex justify-center items-center h-6 rounded-md bg-green-100 text-green-600 text-xs md:text-sm p-2 font-semibold'>Free Gift</button>
+                </div>
+            </div>
+            )
+        }}
+
     return (
         <section>
             {cart?.length > 0 ? (
@@ -65,6 +92,7 @@ const Cart = () => {
                                 </div>
                             );
                         })}
+                        {getFreeGift()}
                     </div>
                 </div>
             ) : (
