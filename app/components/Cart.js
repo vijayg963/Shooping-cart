@@ -21,7 +21,7 @@ const Cart = () => {
 
     const handleDecrement = (product) => {
         const isProductInCart = cart.find((item) => item.id === product.id);
-        if (isProductInCart) {
+        if (isProductInCart && isProductInCart.quantity > 1) {
             setCart((prev) =>
                 prev.map((item) =>
                     item.id === product.id
@@ -29,7 +29,10 @@ const Cart = () => {
                         : item
                 )
             );
+        }else{
+            setCart((prev) => prev.filter((item) => item.id !== product.id));
         }
+
     }
 
 
