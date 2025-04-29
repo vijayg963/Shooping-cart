@@ -6,17 +6,18 @@ import EmptyCart from './emptyCard';
 const Cart = () => {
     const { cart, setCart } = useContext(AppContext);
 
-const handleIncremtnent = (product) => {
-    const isProductInCart = cart.find((item) => item.id === product.id);
-    if (isProductInCart) {
-        setCart((prev) =>
-            prev.map((item) =>
-                item.id === product.id
-                    ? { ...item, quantity: item.quantity + 1 }
-                    : item
-            )
-        );
-    }}
+    const handleIncremtnent = (product) => {
+        const isProductInCart = cart.find((item) => item.id === product.id);
+        if (isProductInCart) {
+            setCart((prev) =>
+                prev.map((item) =>
+                    item.id === product.id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                )
+            );
+        }
+    }
 
     const handleDecrement = (product) => {
         const isProductInCart = cart.find((item) => item.id === product.id);
@@ -30,14 +31,14 @@ const handleIncremtnent = (product) => {
             );
         }
     }
-    
+
 
     console.log('CARD', cart);
     return (
         <section>
             {cart?.length > 0 ? (
                 <div className=''>
-                    <h2 className='text-3xl font-bold my-6 text-[#364153]'>Cart Items</h2>
+                    <h2 className='text-xl md:text-3xl font-bold my-6 text-[#364153]'>Cart Items</h2>
                     <div className=''>
                         {cart?.map((item) => {
                             return (
@@ -47,16 +48,16 @@ const handleIncremtnent = (product) => {
                                 >
                                     <div className='text-gray-700 text-sm'>
                                         <h5 className='font-semibold text-gray-700 text-base'>{item.name}</h5>
-                                        <span >
-                                        ₹{item.price} * {item.quantity || 1}
+                                        <span className='text-xs md:text-sm font-medium text-gray-500'>
+                                            ₹{item.price} * {item.quantity || 1}
                                         </span>{' '}
-                                        = <span>₹{item.price * item.quantity || 1}</span>
+                                        = <span className='text-xs md:text-sm font-medium text-gray-500'>₹{item.price * item.quantity || 1}</span>
                                     </div>
 
                                     <div className='flex justify-center items-center gap-1'>
-                                        <button onClick={()=>handleDecrement(item)} className=' rounded-md flex justify-center items-center bg-red-500 size-10 text-white font-bold text-xl'>-</button>
+                                        <button onClick={() => handleDecrement(item)} className=' rounded-md flex justify-center items-center bg-red-500 size-10 text-white font-bold text-xl'>-</button>
                                         <span className=' rounded-md flex justify-center items-center text-lg font-semibold size-10'>{item.quantity || 1}</span>
-                                        <button onClick={()=>handleIncremtnent(item)} className=' rounded-md flex justify-center items-center bg-green-500 p-2 size-10 text-white font-bold text-xl'>+</button>
+                                        <button onClick={() => handleIncremtnent(item)} className=' rounded-md flex justify-center items-center bg-green-500 p-2 size-10 text-white font-bold text-xl'>+</button>
                                     </div>
                                 </div>
                             );

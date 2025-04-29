@@ -13,10 +13,10 @@ const CartSummary = () => {
 
   return (
     <section>
-      <h2 className='text-3xl font-bold my-6 text-[#364153]'>Cart summary</h2>
+      <h2 className='text-xl md:text-3xl font-bold my-6 text-[#364153]'>Cart summary</h2>
       <div className='bg-white p-4 rounded-md pb-8'>
         <div className='flex justify-between items-center'>
-          <h4 className='text-2xl font-semibold'>Subtotal:</h4> <span className='text-2xl font-bold'>₹{getTotal()}</span>
+          <h4 className='text-lg md:text-2xl font-semibold'>Subtotal:</h4> <span className='text-lg md:text-2xl font-bold'>₹{getTotal()}</span>
         </div>
         <hr className='my-6' />
         {getTotal() > THRESHOLD ? <h3 className='font-semibold'>You got a free wireless mouse!</h3> : <div className='bg-[#F0F6FF] w-full flex flex-col gap-4 p-4 rounded-md'>

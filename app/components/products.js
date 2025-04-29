@@ -5,7 +5,7 @@ import AppContext from '../AppContext'
 
 
 const Products = () => {
-    const { products ,cart, setCart} = useContext(AppContext)
+    const { products, cart, setCart } = useContext(AppContext)
 
     const handleAddToCart = (product) => {
         console.log(product);
@@ -17,15 +17,14 @@ const Products = () => {
         }
     }
 
-    console.log("cart",cart);
     return (
         <section>
-            <h2 className='text-3xl font-bold my-6 text-[#364153]'>Products</h2>
-            <div className='flex justify-between items-center gap-8'>
+            <h2 className='text-xl md:text-3xl font-bold my-6 text-[#364153]'>Products</h2>
+            <div className='grid grid-cols-2 md:grid-cols-4 justify-between items-center gap-4 md:gap-8'>
                 {products?.map(item => <div key={item.id} className='bg-white p-4 rounded-md flex flex-col gap-4 flex-1'>
-                    <h2 className='text-2xl font-semibold'>{item.name}</h2>
-                    <p className='text-lg font-medium'>Price: ${item.price}</p>
-                    <button onClick={()=>handleAddToCart(item)} className='bg-blue-500 text-white px-4 py-2 rounded font-semibold'>Add to Cart</button>
+                    <h2 className='text:lg md:text-2xl font-semibold'>{item.name}</h2>
+                    <p className='text-sm md:text-lg font-medium'>Price: ${item.price}</p>
+                    <button onClick={() => handleAddToCart(item)} className='bg-blue-500 text-white px-2 md:px-4 py-1 md:py-2 rounded font-semibold'>Add to Cart</button>
                 </div>
                 )}
             </div>
